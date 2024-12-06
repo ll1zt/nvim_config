@@ -1,132 +1,79 @@
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
+-- Neovim Configuration File
+-- This configuration is organized into logical sections for better maintainability
 
--- Make line numbers default
+--:help option-list
+-----------------------------------------------------------
+-- Editor Interface Options
+-----------------------------------------------------------
+-- Display line numbers and set their width
 vim.opt.number = true
-
---number of columns used for the line number
 vim.opt.numberwidth = 2
--- Enable mouse mode
-vim.opt.mouse = 'a'
 
-vim.opt.showmode = false
+-- Cursor and scrolling behavior
+vim.opt.cursorline = true -- Highlight the current line
+vim.opt.scrolloff = 10 -- Keep 10 lines above/below cursor
+vim.opt.sidescrolloff = 8 -- Keep 8 columns left/right of cursor
 
--- Sync clipboard between OS and Neovim.
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+-- Command line and status display
+vim.opt.cmdheight = 2 -- Height of command-line area
+vim.opt.showmode = false -- Don't show mode in command line (shown in statusline)
+vim.opt.signcolumn = 'yes' -- Always show the sign column
 
--- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.ignorecase = true
-
-vim.opt.smartcase = true
-
--- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
-
--- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
-
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace characters in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-
---vim.opt.autochdir = true
-
---number of lines to use for the command-line
-vim.opt.cmdheight = 2
-
---whether concealable text is shown or hidden
-vim.opt.conceallevel = 0
-
---file encoding for multibyte text
+-----------------------------------------------------------
+-- File Handling and Buffers
+-----------------------------------------------------------
+-- Encoding and file handling
 vim.opt.fileencoding = 'utf-8'
+vim.opt.undofile = true -- Save undo history
 
---maximum number of items to show in the popup menu
-vim.opt.pumheight = 10
-
---no ignore case when pattern has uppercase
-vim.opt.smartcase = true
-
---smart autoindenting for C programs
-vim.opt.smartindent = true
-
---new window from split is below the current one
-vim.opt.splitbelow = true
-
---new window is put right of the current one
-vim.opt.splitright = true
-
---use spaces when <Tab> is inserted
-vim.opt.expandtab = true
-
---number of spaces to use for (auto)indent step
-vim.opt.shiftwidth = 2
-
---number of spaces that <Tab> in file uses
-vim.opt.tabstop = 2
-
---highlight the screen line of the cursor
-vim.opt.cursorline = true
-
---long lines wrap and continue on the next line
-vim.opt.wrap = false
-
--- Decrease update time
-vim.opt.updatetime = 250
-
--- Decrease mapped sequence wait time
--- Displays which-key popup sooner
-vim.opt.timeoutlen = 300
-
---minimum nr. of lines above and below cursor
-vim.opt.scrolloff = 8
-
--- Sets how neovim will display certain whitespace characters in the editor. See `:help 'list'`
---  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
--- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
-
---min. nr. of columns to left and right of cursor
-vim.opt.sidescrolloff = 8
-
--- Enable break indent
-vim.opt.breakindent = true
-
--- Save undo history
-vim.opt.undofile = true
-
+-- Clipboard integration
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+  vim.opt.clipboard = 'unnamedplus' -- Sync with system clipboard
 end)
+
+-----------------------------------------------------------
+-- Search and Replace
+-----------------------------------------------------------
+-- Search behavior
+vim.opt.ignorecase = true -- Case-insensitive search
+vim.opt.smartcase = true -- Case-sensitive if capital letters present
+vim.opt.inccommand = 'split' -- Live preview for substitutions
+
+-----------------------------------------------------------
+-- Indentation and Formatting
+-----------------------------------------------------------
+-- Tab and indent settings
+vim.opt.expandtab = true -- Use spaces instead of tabs
+vim.opt.shiftwidth = 2 -- Size of indent
+vim.opt.tabstop = 2 -- Number of spaces for tab
+vim.opt.smartindent = true -- Smart autoindenting
+vim.opt.breakindent = true -- Maintain indent when wrapping
+
+-- Text display
+vim.opt.wrap = false -- Don't wrap long lines
+vim.opt.conceallevel = 0 -- Show text normally
+vim.opt.list = true -- Show some invisible characters
+vim.opt.listchars = {
+  tab = '» ', -- Show tabs
+  trail = '·', -- Show trailing spaces
+  nbsp = '␣', -- Show non-breaking spaces
+}
+
+-----------------------------------------------------------
+-- Window Management
+-----------------------------------------------------------
+-- Split window behavior
+vim.opt.splitright = true -- New vertical splits to the right
+vim.opt.splitbelow = true -- New horizontal splits below
+
+-----------------------------------------------------------
+-- Performance and Timing
+-----------------------------------------------------------
+vim.opt.updatetime = 250 -- Faster completion
+vim.opt.timeoutlen = 300 -- Time to wait for mapped sequence
+vim.opt.pumheight = 10 -- Maximum items in popup menu
+
+-----------------------------------------------------------
+-- Input and Interaction
+-----------------------------------------------------------
+vim.opt.mouse = 'a' -- Enable mouse support
